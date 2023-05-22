@@ -20,21 +20,36 @@
         <h1 class="title">Javascript Coding Quiz</h1>
         <div class="card-wrapper">
             <div class="card-header">
-                <h2 class="question">
+                <h2 id="question">
                     This is where the question will go.
                 </h2>
             </div>
             <div class="card-body">
+                <p class="details"></p>
                 <ul class="answer-list">
-                    <li class="answer-a"><button class="btn-answer-a"></button></li>
-                    <li class="answer-b"><button class="btn-asnwer-b"></button></li>
-                    <li class="answer-c"><button class="btn-answer-c"></button></li>
-                    <li class="answer-d"><button class="btn-answer-d"></button></li>
+                    <li class="answers" id="answer-a"><button id="btn-answer-a"></button></li>
+                    <li class="answers" id="answer-b"><button id="btn-asnwer-b"></button></li>
+                    <li class="answers" id="answer-c"><button id="btn-answer-c"></button></li>
+                    <li class="answers" id="answer-d"><button id="btn-answer-d"></button></li>
                 </ul>
             </div>
+            <div class="start"><button id="start-btn">Start</button></div>
+        </div>
+        <div class="display-result">
+            <h6 id="result"></h6>
         </div>
     </main>
-    
+    <div class="final-score">
+        <h2>Your final score: <span id="score"></span></h2>
+        <form id="score-form" method="post">
+            <label for="name-input">Enter Your Name:  </label>
+            <input type="text" name="name-input" id="name-input">
+            <button type="submit" id="btn-submit"></button>
+        </form>
+    </div>
+    <div class="highscore-page">
+        
+    </div>
     <script src="Assets/javascript/script.js"></script>
 </body>
 </html>

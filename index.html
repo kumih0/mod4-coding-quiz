@@ -44,11 +44,22 @@
         <form id="score-form" method="post">
             <label for="name-input">Enter Your Name:  </label>
             <input type="text" name="name-input" id="name-input">
-            <button type="submit" id="btn-submit"></button>
+            <button type="submit" id="btn-submit">Submit</button>
         </form>
     </div>
-    <div class="highscore-page">
-        
+    <div class="highscore-page" > 
+        <div class="card-wrapper">
+            <div class="card-header">
+                <h2 class="left">Name: </h2>
+                <h2 class="right">Score: </h2>
+            </div>
+            <div class="card-body">
+                <ul class="highscore-list">
+                </ul>
+            </div>
+            <button id="back-btn">Go Back</button>
+            <button type="reset" id="clear-btn">Clear All</button>
+        </div>
     </div>
     <script src="Assets/javascript/script.js"></script>
 </body>

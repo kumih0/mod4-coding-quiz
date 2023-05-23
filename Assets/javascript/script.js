@@ -13,11 +13,6 @@ var highscorePage = document.querySelector(".highscore-page");
 var question = document.getElementById("question");
 var answerList = document.getElementById("answer-list");
 
-// var questionArray = [
-//     "What is NOT a primitive value in JavaScript?",
-//     "A string is visually identified by the _____ around it.",
-// ];
-
     var questionArray = [
         {q:"What is NOT a primitive value in JavaScript?",
             answers: [

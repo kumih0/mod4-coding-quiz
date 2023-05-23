@@ -1,47 +1,48 @@
 var timer = document.getElementById("time");
 var startBtn = document.getElementById("start-btn");
-
+var qIndex;
 
 // var mode = "hidden";
 // var isVisible = document.getElementsByClassName("display");
 var resultEl = document.querySelector(".display-result");
 
 var finalScoreEl = document.querySelector(".final-score");
+var viewHS = document.getElementById("view-hs");
 var highscorePage = document.querySelector(".highscore-page");
 
 var question = document.getElementById("question");
 var answerList = document.getElementById("answer-list");
 
-var questionArray = [
-    "What is NOT a primitive value in JavaScript?",
-    "A string is visually identified by the _____ around it.",
-    "How do you call a function?",
-    "What is the difference between a local and global variable?",
-    "What is the data type of 'functionalNonsense[]'?"
-];
+// var questionArray = [
+//     "What is NOT a primitive value in JavaScript?",
+//     "A string is visually identified by the _____ around it.",
+//     "How do you call a function?",
+//     "What is the difference between a local and global variable?",
+//     "What is the data type of 'functionalNonsense[]'?"
+// ];
 
-var correctAns = [
-        "objects",
-        "quotations '' ",
-        "functionName();",
-        "global variables can be accessed throughout the script, local variables can only be accessed within their function",
-        "array"
-    ];
+
+// var correctAns = [
+//         "objects",
+//         "quotations '' ",
+//         "functionName();",
+//         "global variables can be accessed throughout the script, local variables can only be accessed within their function",
+//         "array"
+//     ];
     
-    var ans1 ={
+    var q1 ={
         q:"What is NOT a primitive value in JavaScript?",
-        ansA: "numbers",
-        ansB: "boolean",
-        ansC: "objects",
-        ansD: "null"
+        answers: ["numbers", "boolean", "objects", "null"],
+        correctAns: "objects",
         
     };
-    var ans2 = {
-        ansA: "parentheses ()",
-        ansB: "quotations '' ",
-        ansC: "brackets []",
-        ansD: "nothing"
+    var q2 = {
+        q: "A string is visually identified by the _____ around it.",
+        answers: ["parentheses ()", "quotations '' ", "brackets []", "nothing"],
+        correctAns: "quotations '' ",
     };
+    
+    var questionArray = [q1, q2];
     var ans3 = {
         ansA: "functionName",
         ansB: "(functionName);",
@@ -107,7 +108,7 @@ var correctAns = [
     details.setAttribute("class", "hidden");
 };
 
-startBtn.addEventListener("click", function start(event) {
+startBtn.addEventListener("click", function startQuiz(event) {
     event.preventDefault();
     hideHeader();
     hideDetails();
@@ -116,8 +117,31 @@ startBtn.addEventListener("click", function start(event) {
     countdown();
 
     startBtn.setAttribute("class", "hidden");
-
+    qIndex = 0;
+    setQuestion();
     
 });
 
 
+viewHS.addEventListener("click", function displayHighscores(){
+    var mainPg = document.querySelector(".main");
+    mainPg.setAttribute("class", "hidden");
+    finalScoreEl.setAttribute("class", "hidden");
+    highscorePage.setAttribute("class", "display");
+});
+
+function setQuestion(){
+    var currentQ = questionArray[qIndex].q;
+    question.innerText = currentQ; 
+    
+    var currentAnswers = questionArray[qIndex].answers;
+    answerList.innerHTML = "";
+    
+    for (let index = 0; index < currentAnswers.length; index++) {
+            console.log(currentAnswers[index]);
+            let btn = document.createElement("button");
+            btn.innerText = currentAnswers[index];
+            answerList.appendChild(btn);
+        }
+
+};

@@ -20,13 +20,13 @@ var questionArray = [
     "What is the data type of 'functionalNonsense[]'?"
 ];
 
-// var correctAns = [
-    //     "objects",
-    //     "quotations '' ",
-    //     "functionName();",
-    //     "global variables can be accessed throughout the script, local variables can only be accessed within their function",
-    //     "array"
-    // ];
+var correctAns = [
+        "objects",
+        "quotations '' ",
+        "functionName();",
+        "global variables can be accessed throughout the script, local variables can only be accessed within their function",
+        "array"
+    ];
     
     var ans1 ={
         q:"What is NOT a primitive value in JavaScript?",

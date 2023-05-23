@@ -1,4 +1,16 @@
-var timer = document.getElementById("time")
+var timer = document.getElementById("time");
+var startBtn = document.getElementById("start-btn");
+
+
+// var isHidden = document.getElementsByClassName("hidden");
+// var isVisible = document.getElementsByClassName("display");
+var cardHeader = document.querySelector(".card-header");
+var details = document.querySelector(".details");
+
+
+var question = document.getElementById("question");
+var answerList = document.getElementById("answer-list");
+
 var questionArray = [
     "What is NOT a primitive value in JavaScript?",
     "A string is visually identified by the _____ around it.",
@@ -74,3 +86,12 @@ function countdown(){
 };
 
 
+
+startBtn.addEventListener("click", function start(event) {
+    event.preventDefault();
+    
+
+    
+
+
+});

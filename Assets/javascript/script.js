@@ -13,47 +13,47 @@ var highscorePage = document.querySelector(".highscore-page");
 var question = document.getElementById("question");
 var answerList = document.getElementById("answer-list");
 
-    var questionArray = [
-        {q:"What is NOT a primitive value in JavaScript?",
-            answers: [
-                "numbers", 
-                "boolean", 
-                "objects", 
-                "null"],
-            correctAns: "objects"},
+var questionArray = [
+    {q:"What is NOT a primitive value in JavaScript?",
+        answers: [
+            "numbers", 
+            "boolean", 
+            "objects", 
+            "null"],
+        correctAns: "objects"},
 
-        {q: "A string is visually identified by the _____ around it.",
-            answers: [
-                "parentheses ()", 
-                "quotations '' ", 
-                "brackets []", 
-                "nothing"],
-            correctAns: "quotations '' ",},
+    {q: "A string is visually identified by the _____ around it.",
+        answers: [
+            "parentheses ()", 
+            "quotations '' ", 
+            "brackets []", 
+            "nothing"],
+        correctAns: "quotations '' ",},
 
-        {q: "How do you call a function?",
-            answers: [ 
-                "functionName", 
-                "(functionName);", 
-                "functionName;()", 
-                "functionName();"],
-            correctAns: "functionName();",},
+    {q: "How do you call a function?",
+        answers: [ 
+            "functionName", 
+            "(functionName);", 
+            "functionName;()", 
+            "functionName();"],
+        correctAns: "functionName();",},
 
-        {q: "What is the difference between a local and global variable?",
-            answers: [
-                "global variables can be accessed throughout the script, local variables can only be accessed within their function", 
-                "local variables can be accessed throughout the script, global variables can only be accessed in their function", 
-                "local variables can only be accessed by local files, global variables can be accessed globally", 
-                "there is no difference"],
-            correctAns: "global variables can be accessed throughout the script, local variables can only be accessed within their function",},
+    {q: "What is the difference between a local and global variable?",
+        answers: [
+            "global variables can be accessed throughout the script, local variables can only be accessed within their function", 
+            "local variables can be accessed throughout the script, global variables can only be accessed in their function", 
+            "local variables can only be accessed by local files, global variables can be accessed globally", 
+            "there is no difference"],
+        correctAns: "global variables can be accessed throughout the script, local variables can only be accessed within their function",},
 
-        {q: "What is the data type of 'functionalNonsense[]'?",
-            answers: [
-                "function",
-                "variable",
-                "array",
-                "loop"],
-            correctAns: "array",},
-    ];
+    {q: "What is the data type of 'functionalNonsense[]'?",
+        answers: [
+            "function",
+            "variable",
+            "array",
+            "loop"],
+        correctAns: "array",},
+];
 
     
     function countdown(){

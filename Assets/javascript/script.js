@@ -94,6 +94,7 @@ var correctAns = [
     function showQuestion() {
         var cardHeader = document.querySelector(".card-header");
         cardHeader.setAttribute("class", "display");
+
     };
     
     function showAnsList() {
@@ -115,6 +116,8 @@ startBtn.addEventListener("click", function start(event) {
     countdown();
 
     startBtn.setAttribute("class", "hidden");
+
+    
 });
 
 

@@ -1,0 +1,23 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: papayawhip;
+}
+
+header .header{
+    background-color: darkviolet;
+    color:whitesmoke;
+    font-weight: bold;
+    border-bottom: 5px groove rebeccapurple;
+    justify-content: space-between;
+}
+
+.highscores, .timer{
+    border: 3px ridge lavender;
+    text-decoration: underline;
+}
+
+
+

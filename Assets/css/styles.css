@@ -1,23 +1,69 @@
+/*  */
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    display: flex;
     padding: 1rem;
     margin: 1rem;
     background-color: papayawhip;
 }
 
-header .header{
-    background-color: darkviolet;
-    color:whitesmoke;
+header{
+    display: flex;
+    background-color: rebeccapurple;
+    color: lavender;
     font-weight: bold;
-    border-bottom: 5px groove rebeccapurple;
+    border-bottom: 10px groove dimgrey;
+    border-radius: 10px;
     justify-content: space-between;
+    padding: 0.5rem 1rem;
 }
 
 .highscores, .timer{
     border: 3px ridge lavender;
-    text-decoration: underline;
+    border-radius: 5px;
+    padding: 2px 5px;
 }
 
+.main-heading{
+    display: flex;
+    background-color: rebeccapurple;
+    border-radius: 2px;
+    color: lavender;
+    justify-content: center;
+    align-items: center;
+}
 
+main{
 
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.hidden{
+    display: none;
+}
+
+.display{
+    visibility: visible;
+}
+
+.card-wrapper{
+    background-color: linen;
+    border: 5px ridge plum;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.start{
+    display: flex;
+    justify-content: center;
+    
+}
+
+button{
+    padding: 2px 5px;
+}
+
+.card-body{
+    background-color: cadetblue;
+
+}

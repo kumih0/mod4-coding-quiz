@@ -10,26 +10,26 @@
 <body>
     <header class="header">
         <div class="highscores">
-            <h3 id="view-hs">View High Scores</h3>
+            <p id="view-hs">View High Scores</p>
         </div>
         <div class="timer">
-            <h3>Time: <span id="time"></span></h3>
+            <p>Time: <span id="time"></span></p>
         </div>
     </header>
 
     <main class="main">
-        <h1 class="title">Javascript Coding Quiz</h1>
+        <h1 class="main-heading display">Javascript Coding Quiz</h1>
         
         <div class="card-wrapper">
-            <div class="card-header">
+            <div class="card-header hidden" data-state="hidden">
                 <h2 id="question">
                     This is where the question will go.
                 </h2>
             </div>
 
             <div class="card-body">
-                <p class="details"></p>
-                <ul class="answer-list">
+                <p class="details display"></p>
+                <ul class="answer-list hidden" data-state="hidden">
                     <li class="answers" id="answer-a"><button id="btn-answer-a"></button></li>
                     <li class="answers" id="answer-b"><button id="btn-asnwer-b"></button></li>
                     <li class="answers" id="answer-c"><button id="btn-answer-c"></button></li>
@@ -37,14 +37,14 @@
                 </ul>
             </div>
 
-            <div class="start"><button id="start-btn">Start</button></div>
+            <div class="start display" data-state="display"><button id="start-btn">Start</button></div>
         </div>
-        <div class="display-result">
+        <div class="display-result hidden" data-state="hidden">
             <h6 id="result"></h6>
         </div>
     </main>
 
-    <div class="final-score">
+    <div class="final-score hidden" data-state="hidden">
         <h2>Your final score: <span id="score"></span></h2>
         <form id="score-form" method="post">
             <label for="name-input">Enter Your Name:  </label>
@@ -53,7 +53,7 @@
         </form>
     </div>
 
-    <div class="highscore-page" > 
+    <div class="highscore-page hidden" data-state="hidden"> 
         <div class="card-wrapper">
             <div class="card-header">
                 <h2 class="left">Name: </h2>

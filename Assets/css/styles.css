@@ -1,8 +1,7 @@
 /*  */
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 1rem;
-    margin: 1rem;
+    margin: 0 auto;
     background-color: papayawhip;
 }
 
@@ -12,31 +11,32 @@ header{
     color: lavender;
     font-weight: bold;
     border-bottom: 10px groove dimgrey;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     justify-content: space-between;
     padding: 0.5rem 1rem;
 }
 
 .highscores, .timer{
+    display:flex;
     border: 3px ridge lavender;
     border-radius: 5px;
-    padding: 2px 5px;
+    padding: 3px 5px;
     font-size: 16px;
 }
 
-.main-heading{
+h1{
     display: flex;
     background-color: rebeccapurple;
     border-radius: 2px;
     color: lavender;
     justify-content: center;
     align-items: center;
+    padding: 0.5rem;
 }
 
 main{
-
-    margin: 1rem;
-    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    padding: 0 5px;
 }
 /* default for html elments in hidden class, set properties to be toggled in javascript */
 .hidden{
@@ -52,6 +52,7 @@ main{
     border: 5px ridge plum;
     border-radius: 10px;
     padding: 1rem;
+    margin: 1rem;
 }
 
 .start{

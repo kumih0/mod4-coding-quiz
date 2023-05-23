@@ -37,11 +37,11 @@ main{
     margin: 1rem;
     padding: 0.5rem 1rem;
 }
-
+/* default for html elments in hidden class, set properties to be toggled in javascript */
 .hidden{
     display: none;
 }
-
+/* default for html elements in display class, set properties to be toggled in javascript */
 .display{
     visibility: visible;
 }
@@ -64,6 +64,6 @@ button{
 }
 
 .card-body{
-    background-color: cadetblue;
+    background-color: powderblue;
 
 }

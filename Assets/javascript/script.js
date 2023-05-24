@@ -165,8 +165,8 @@ function checkAns(event){
 
     
 function nextQuestion(){
+    qIndex++;
     if (qIndex<questionArray.length) {
-        qIndex++;
         var ansBtns = answerList.getElementsByClassName("answer");
         console.log(ansBtns);
         // removes unnecessary buttons from persisting
@@ -177,6 +177,7 @@ function nextQuestion(){
         }
         setQuestion();
     } else {
+
         endQuiz();
     }
 }
@@ -185,6 +186,10 @@ function endQuiz(){
 //if timer drops below 0 then it will default to 0
     if (timeLeft < 0) {
          timeLeft = 0;
+         scoreEl.textContent = timeLeft;
+    }
+    if (timeLeft > 0) {
+        scoreEl.textContent = timeLeft;
     }
     showFinalScore();
 }
@@ -192,7 +197,6 @@ function endQuiz(){
 function showFinalScore(){
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "display");
-    scoreEl.textContent = timeLeft;
 }
 // function hide(event){
 //     if (condition) {

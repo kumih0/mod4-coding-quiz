@@ -5,7 +5,7 @@ var timeLeft = 75;
 // var mode = "hidden";
 // var isVisible = document.getElementsByClassName("display");
 var resultEl = document.querySelector(".display-result");
-
+var result = document.getElementById("result");
 var scoreEl = document.getElementById("score");
 
 var finalScoreEl = document.querySelector(".final-score");
@@ -76,36 +76,34 @@ function countdown(){
             timeLeft--;
         } else {
             timer.textContent = "0";
-                // Use `clearInterval()` to stop the timer
-            clearInterval(timeInterval);
-                // Call the function to display final score
+            // Call the function to end quiz and display final score
             endQuiz();
         }
     }, 1000);
 };
-    
-    function hideHeader() {
-        var h1El = document.getElementById("main-heading");
-        h1El.setAttribute("class", "hidden");
-        return;
-    };
-    
-    function showQuestion() {
-        var cardHeader = document.querySelector(".card-header");
-        cardHeader.setAttribute("class", "display");
-        return;
-    };
-    
-    function showAnsList() {
-        answerList.setAttribute("class", "display");
-        return;
-    };
-    
-    function hideDetails(){
-        var details = document.querySelector(".details");
-        details.setAttribute("class", "hidden");
-        return;
-    };
+
+function hideHeader() {
+    var h1El = document.getElementById("main-heading");
+    h1El.setAttribute("class", "hidden");
+    return;
+};
+
+function showQuestion() {
+    var cardHeader = document.querySelector(".card-header");
+    cardHeader.setAttribute("class", "display");
+    return;
+};
+
+function showAnsList() {
+    answerList.setAttribute("class", "display");
+    return;
+};
+
+function hideDetails(){
+    var details = document.querySelector(".details");
+    details.setAttribute("class", "hidden");
+    return;
+};
 
 startBtn.addEventListener("click", function startQuiz(event) {
     event.preventDefault();
@@ -114,7 +112,7 @@ startBtn.addEventListener("click", function startQuiz(event) {
     showQuestion();
     showAnsList();
     countdown();
-
+    
     startBtn.setAttribute("class", "hidden");
     qIndex = 0;
     setQuestion();
@@ -136,29 +134,22 @@ function setQuestion(){
     // answerList.innerHTML = "";
     
     for (let index = 0; index < currentAnswers.length; index++) {
-            console.log(currentAnswers[index]);
-            let btn = document.createElement("button");
-            btn.innerText = currentAnswers[index];
-            answerList.children[index].appendChild(btn);
-            btn.setAttribute("class", "answer");
-            console.log(btn);
-        }
-    //     var userSelect;
-    //     console.log(answerList.children);
-    // answerList.children.addEventListener("click", function select(event) {
-    //     event.preventDefault();
-    //     userSelect = event.innerText;
-    //     console.log(event);
-    //     console.log(userSelect);
+        console.log(currentAnswers[index]);
+        let btn = document.createElement("button");
+        btn.innerText = currentAnswers[index];
+        answerList.children[index].appendChild(btn);
+        btn.setAttribute("class", "answer");
+        console.log(btn);
+    }
 };
     
+    
+ 
 
-
-var result = document.getElementById("result");
 function checkAns(event){
     if (event.target.matches("button")) {
         var userSelect = event.target.innerText;
-        
+            
         resultEl.setAttribute("class", "display");
         if (userSelect === questionArray[qIndex].correctAns) {
             result.textContent = "Correct!";
@@ -169,6 +160,7 @@ function checkAns(event){
         nextQuestion();
 }
 
+    
 function nextQuestion(){
     if (qIndex<questionArray.length) {
         qIndex++;
@@ -177,15 +169,16 @@ function nextQuestion(){
         endQuiz();
     }
 }
-
+    
 function endQuiz(){
+    // Use `clearInterval()` to stop the timer
     clearInterval(timeInterval);
     if (timeLeft < 0) {
-        timeLeft = 0;
+         timeLeft = 0;
     }
     showFinalScore();
 }
-
+    
 function showFinalScore(){
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "display");

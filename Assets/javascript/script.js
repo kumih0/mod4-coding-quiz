@@ -2,7 +2,7 @@
 var timer = document.getElementById("time");
 var startBtn = document.getElementById("start-btn");
 var qIndex; //the counter for question index 
-var timeLeft = 75;
+var timeLeft;
 var timeInterval; //declaring var timeint so can call to other funct
 
 //variables relating to page contents for changing what's displayed
@@ -76,9 +76,10 @@ var questionArray = [
             "loop"],
         correctAns: "array",},
 ];
-
-    
+ 
+//functions
 function countdown(){       
+    timeLeft = 75;
     timeInterval = setInterval(function countdown() {
             // As long as the `timeLeft` is greater than 1
         if (timeLeft > 1) {
@@ -102,41 +103,12 @@ function countdown(){
 function hideStartPg() {
     h1El.setAttribute("class", "hidden");
     details.setAttribute("class", "hidden");
-    return;
 };
 
 function showQuiz() {
     cardHeader.setAttribute("class", "display");
     answerList.setAttribute("class", "display");
-    return;
 };
-
-// function showAnsList() {
-
-//     return;
-// };
-
-// function hideDetails(){
-
-//     return;
-// };
-
-startBtn.addEventListener("click", function startQuiz(event) {
-    event.preventDefault();
-    hideStartPg();
-    // hideDetails();
-    showQuiz();
-    // showAnsList();
-    countdown();
-    
-    startBtn.setAttribute("class", "hidden");
-    qIndex = 0;
-    setQuestion();
-});
-
-
-//if user clicks on view high score, ref load score funct
-viewHS.addEventListener("click", loadScores);
 
 function displayHighscores(){
     mainPg.setAttribute("class", "hidden");
@@ -145,6 +117,7 @@ function displayHighscores(){
 };
 
 function setQuestion(){
+    removeBtns();
     var currentQ = questionArray[qIndex].q;
     question.innerText = currentQ; 
     
@@ -175,26 +148,27 @@ function checkAns(event){
     }
         nextQuestion();
 };
-
-    
+   
 function nextQuestion(){
     qIndex++;
     if (qIndex < questionArray.length) {
-        var ansBtns = answerList.getElementsByClassName("answer");
-        // removes unnecessary buttons from persisting
-        if (ansBtns.length > 0) {
-            while (ansBtns[0]) {
-                ansBtns[0].parentNode.removeChild(ansBtns[0]);
-            }
-        }
+        removeBtns();
         setQuestion();
-
     } else {
-
         endQuiz();
     }
-}
-    
+};
+
+function removeBtns() {
+    var ansBtns = answerList.getElementsByClassName("answer");
+    // removes unnecessary buttons from persisting
+    if (ansBtns.length > 0) {
+        while (ansBtns[0]) {
+            ansBtns[0].parentNode.removeChild(ansBtns[0]);
+        }
+    }
+};
+
 function endQuiz(){
 //if timer drops below 0 then it will default to 0
     if (timeLeft > 0) {
@@ -210,15 +184,8 @@ function endQuiz(){
     
 function showFinalScore(){
     mainPg.setAttribute("class", "hidden");
-    finalScoreEl.setAttribute("class", "display");
-    return;
+    finalScoreEl.setAttribute("class", "display");    
 };
-// function hide(event){
-//     if (condition) {
-        
-//     }
-//     event.target.class.toggle("hidden");
-// }
 
 function submitScore(event) {
     event.preventDefault();
@@ -230,7 +197,7 @@ function submitScore(event) {
     //add input to new li element
     if (newName) {
         newNameLi.textContent = newName;
-    } else if (newName) {
+    } else {
         newNameLi.textContent = "mysteryperson";
     }
     newScoreLi.textContent = scoreEl.textContent;
@@ -247,8 +214,6 @@ function submitScore(event) {
     loadScores();
 };
 
-submitBtn.addEventListener("click", submitScore);
-
 function loadScores(event) {
     var highscoresSaveNames = localStorage.getItem("highscores-name");
     var highscoresSaveScores = localStorage.getItem("highscores-score");
@@ -260,21 +225,11 @@ function loadScores(event) {
     displayHighscores();    hideHeader();
 };
 
-backBtn.addEventListener("click", function goBack(){
-    mainPg.setAttribute("class", "display");
-    highscorePage.setAttribute("class", "hidden");
-//returns user to last page they were on if click on view high score during game, if on first page or viewing high score pg, return to first page
-    if (qIndex < questionArray.length && cardHeader.className === "display" && answerList.className === "display") {
-        showHeader();
-    } else 
-        hideQuiz();
-        showStartPg();        showHeader();
-    });
-
 function showStartPg() {
     h1El.setAttribute("class", "display");
     details.setAttribute("class", "display");
     startBtn.setAttribute("class", "display");
+    hideQuiz();
 };
 
 function hideQuiz() {
@@ -291,7 +246,34 @@ function hideHeader() {
 function showHeader() {
     var header = document.getElementById("header");
     header.setAttribute("class", "display");
-}
+};
+
+//event listeners
+startBtn.addEventListener("click", function startQuiz(event) {
+    event.preventDefault();
+    countdown();
+    hideStartPg();
+    showQuiz();
+
+    startBtn.setAttribute("class", "hidden");
+    qIndex = 0;
+    setQuestion();
+});
+
+//if user clicks on view high score, ref load score funct
+viewHS.addEventListener("click", loadScores);
+
+submitBtn.addEventListener("click", submitScore);
+
+backBtn.addEventListener("click", function goBack(){
+    mainPg.setAttribute("class", "display");
+    highscorePage.setAttribute("class", "hidden");
+    //returns user to last page they were on if click on view high score during game, if on first page or viewing high score pg, return to first page
+    if (qIndex < questionArray.length && cardHeader.className === "display" && answerList.className === "display") {
+        showHeader();
+    } else 
+    showStartPg();        showHeader();
+});
 
 clearHS.addEventListener("click", function clearScores() {
     localStorage.removeItem("highscores");

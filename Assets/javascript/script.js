@@ -1,18 +1,22 @@
+// variables w correlating html element
 var timer = document.getElementById("time");
 var startBtn = document.getElementById("start-btn");
-var qIndex;
+var qIndex; //the counter for question index 
 var timeLeft = 75;
-// var mode = "hidden";
-// var isVisible = document.getElementsByClassName("display");
-var resultEl = document.querySelector(".display-result");
+
+var resultEl = document.querySelector(".display-result"); 
+//result as in displays if selection was correct or incorrect answer
 var result = document.getElementById("result");
 var scoreEl = document.getElementById("score");
-
 var finalScoreEl = document.querySelector(".final-score");
+
+//var relating to highscores, high score page, score form
 var viewHS = document.getElementById("view-hs");
 var highscorePage = document.querySelector(".highscore-page");
 var highscoreList = document.querySelector(".highscore-list");
+var backBtn = document.getElementById("back-btn");
 
+//Question/answer global variables
 var question = document.getElementById("question");
 var answerList = document.getElementById("answer-list");
 var answers = document.getElementsByClassName(".answers");
@@ -29,10 +33,10 @@ var questionArray = [
     {q: "A string is visually identified by the _____ around it.",
         answers: [
             "parentheses ()", 
-            "quotations '' ", 
+            "quotations", 
             "brackets []", 
             "nothing"],
-        correctAns: "quotations '' ",},
+        correctAns: "quotations",},
 
     {q: "How do you call a function?",
         answers: [ 
@@ -76,6 +80,7 @@ function countdown(){
             timeLeft--;
         } else {
             timer.textContent = "0";
+            clearInterval(timeInterval);
             // Call the function to end quiz and display final score
             endQuiz();
         }
@@ -131,8 +136,7 @@ function setQuestion(){
     question.innerText = currentQ; 
     
     var currentAnswers = questionArray[qIndex].answers;
-    // answerList.innerHTML = "";
-    
+    // answerList.children.innerHTML = "";
     for (let index = 0; index < currentAnswers.length; index++) {
         console.log(currentAnswers[index]);
         let btn = document.createElement("button");
@@ -141,10 +145,9 @@ function setQuestion(){
         btn.setAttribute("class", "answer");
         console.log(btn);
     }
+
+    answerList.addEventListener("click", checkAns);
 };
-    
-    
- 
 
 function checkAns(event){
     if (event.target.matches("button")) {
@@ -154,8 +157,8 @@ function checkAns(event){
         if (userSelect === questionArray[qIndex].correctAns) {
             result.textContent = "Correct!";
         } else         
-        result.textContent = "Incorrect!";
-        timeLeft = timeLeft-15;
+            result.textContent = "Incorrect!";
+            timeLeft = timeLeft-15;
         }
         nextQuestion();
 }
@@ -164,6 +167,14 @@ function checkAns(event){
 function nextQuestion(){
     if (qIndex<questionArray.length) {
         qIndex++;
+        var ansBtns = answerList.getElementsByClassName("answer");
+        console.log(ansBtns);
+        // removes unnecessary buttons from persisting
+        if (ansBtns.length > 0) {
+            while (ansBtns[0]) {
+                ansBtns[0].parentNode.removeChild(ansBtns[0]);
+            }
+        }
         setQuestion();
     } else {
         endQuiz();
@@ -171,8 +182,7 @@ function nextQuestion(){
 }
     
 function endQuiz(){
-    // Use `clearInterval()` to stop the timer
-    clearInterval(timeInterval);
+//if timer drops below 0 then it will default to 0
     if (timeLeft < 0) {
          timeLeft = 0;
     }
@@ -191,7 +201,7 @@ function showFinalScore(){
 //     event.target.class.toggle("hidden");
 // }
 
-var backBtn = document.getElementById("back-btn");
+
     
 backBtn.addEventListener("click", function goBack(){
     mainPg.setAttribute("class", "display");

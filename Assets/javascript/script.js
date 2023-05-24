@@ -214,7 +214,22 @@ function submitScore(event) {
     event.preventDefault();
     newName = nameInput.textContent;
     //new elements to load on highscore page
-    var newNameEl = document.createElement("p");
+    var newNameLi = document.createElement("li");
+    var newScoreLi = document.createElement("li");
+
+    //entered name input
+    if (newName) {
+        newNameLi.textContent = newName;
+    } else {
+        newNameLi.textContent = "mysteryperson";
+    }
+    newScoreLi.textContent = scoreEl;
+    nameScoreList.appendChild(newNameLi);
+    scoreList.appendChild(newScoreLi);
+    //save to local storage
+    localStorage.setItem("highscores", highscoreList.innerHTML);
+    
+    //function load high scores
 }
     
 backBtn.addEventListener("click", function goBack(){

@@ -257,8 +257,7 @@ function loadScores(event) {
         nameScoreList.innerText = highscoresSaveNames;
         scoreList.innerText = highscoresSaveScores;
     }
-    hideHeader();
-    displayHighscores();
+    displayHighscores();    hideHeader();
 };
 
 backBtn.addEventListener("click", function goBack(){
@@ -267,41 +266,31 @@ backBtn.addEventListener("click", function goBack(){
 //returns user to last page they were on if click on view high score during game, if on first page or viewing high score pg, return to first page
     if (qIndex < questionArray.length && cardHeader.className === "display" && answerList.className === "display") {
         showHeader();
-        return;
-    } else if (h1El.className === "hidden" && details.className  === "hidden") {
-        showHeader();
-        showStartPg();
+    } else 
         hideQuiz();
-      return;  
-        }
+        showStartPg();        showHeader();
     });
 
 function showStartPg() {
     h1El.setAttribute("class", "display");
     details.setAttribute("class", "display");
-    
-    var startEl = document.getElementById("start");
-    startEl.setAttribute("class", "display");
-    return;
+    startBtn.setAttribute("class", "display");
 };
 
 function hideQuiz() {
     cardHeader.setAttribute("class", "hidden");
     answerList.setAttribute("class", "hidden");
     resultEl.setAttribute("class", "hidden");
-    return;
 };
 
 function hideHeader() {
     var header = document.getElementById("header");
     header.setAttribute("class", "hidden");
-    return;
 };
 
 function showHeader() {
     var header = document.getElementById("header");
     header.setAttribute("class", "display");
-    return;
 }
 
 clearHS.addEventListener("click", function clearScores() {

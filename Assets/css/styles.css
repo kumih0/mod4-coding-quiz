@@ -55,7 +55,7 @@ main{
     margin: 1rem;
 }
 
-.start{
+#start{
     display: flex;
     justify-content: center;
     

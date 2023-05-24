@@ -129,7 +129,6 @@ function setQuestion(){
         answerList.children[index].appendChild(btn);
         btn.setAttribute("class", "answer");
     }
-
     answerList.addEventListener("click", checkAns);
 };
 

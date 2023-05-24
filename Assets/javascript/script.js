@@ -3,12 +3,16 @@ var timer = document.getElementById("time");
 var startBtn = document.getElementById("start-btn");
 var qIndex; //the counter for question index 
 var timeLeft = 75;
+var timeInterval; //declaring var timeint so can call to other funct
+
+//variables relating to page contents for changing what's displayed
 var h1El = document.getElementById("main-heading");
 var details = document.querySelector(".details");
 var cardHeader = document.querySelector(".card-header");
+var mainPg = document.getElementById("main");
 
-var resultEl = document.querySelector(".display-result"); 
 //result as in displays if selection was correct or incorrect answer
+var resultEl = document.querySelector(".display-result"); 
 var result = document.getElementById("result");
 var scoreEl = document.getElementById("score");
 var finalScoreEl = document.querySelector(".final-score");
@@ -74,22 +78,20 @@ var questionArray = [
 ];
 
     
-function countdown(){
-
-        
-    var timeInterval = setInterval(function () {
+function countdown(){       
+    timeInterval = setInterval(function countdown() {
             // As long as the `timeLeft` is greater than 1
         if (timeLeft > 1) {
                 // Set the `textContent` of `timer` to show the remaining seconds
-            timer.textContent = timeLeft + ' seconds remaining';
+            timer.textContent = timeLeft;
                 // Decrement `timeLeft` by 1
             timeLeft--;
         } else if (timeLeft === 1) {
             // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
             timer.textContent = timeLeft + ' second remaining';
             timeLeft--;
-        } else {
-            timer.textContent = "0";
+        } else if(timeLeft === 0){
+            timer.textContent = "";
             clearInterval(timeInterval);
             // Call the function to end quiz and display final score
             endQuiz();
@@ -131,7 +133,7 @@ startBtn.addEventListener("click", function startQuiz(event) {
 });
 
 
-var mainPg = document.getElementById("main");
+
 viewHS.addEventListener("click", function displayHighscores(){
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "hidden");
@@ -143,14 +145,12 @@ function setQuestion(){
     question.innerText = currentQ; 
     
     var currentAnswers = questionArray[qIndex].answers;
-    // answerList.children.innerHTML = "";
+
     for (let index = 0; index < currentAnswers.length; index++) {
-        console.log(currentAnswers[index]);
         let btn = document.createElement("button");
         btn.innerText = currentAnswers[index];
         answerList.children[index].appendChild(btn);
         btn.setAttribute("class", "answer");
-        console.log(btn);
     }
 
     answerList.addEventListener("click", checkAns);
@@ -163,12 +163,14 @@ function checkAns(event){
         resultEl.setAttribute("class", "display");
         if (userSelect === questionArray[qIndex].correctAns) {
             result.textContent = "Correct!";
-        } else         
+            
+        } else  {       
             result.textContent = "Incorrect!";
             timeLeft = timeLeft-15;
         }
+    }
         nextQuestion();
-}
+};
 
     
 function nextQuestion(){
@@ -183,6 +185,7 @@ function nextQuestion(){
             }
         }
         setQuestion();
+
     } else {
 
         endQuiz();
@@ -191,12 +194,14 @@ function nextQuestion(){
     
 function endQuiz(){
 //if timer drops below 0 then it will default to 0
-    if (timeLeft < 0) {
-         timeLeft = 0;
-         scoreEl.textContent = timeLeft;
-    }
     if (timeLeft > 0) {
         scoreEl.textContent = timeLeft;
+        clearInterval(timeInterval);
+    }
+     if (timeLeft < 0) {
+         timeLeft = 0;
+         scoreEl.textContent = timeLeft;
+         clearInterval(timeInterval);
     }
     showFinalScore();
 };
@@ -214,34 +219,40 @@ function showFinalScore(){
 
 function submitScore(event) {
     event.preventDefault();
-    newName = nameInput.textContent;
-    //new elements to load on highscore page
-    var newNameLi = nameScoreList.createElement("li");
-    var newScoreLi = scoreList.createElement("li");
+    // if (event.target.innerHTML.matches("submit")) {
 
-    //entered name input
+    newName = nameInput.textContent; //capture user input
+    //new elements to load on highscore page
+    var newNameLi = document.createElement("li");
+    var newScoreLi = document.createElement("li");
+
+    //add input to new li element
     if (newName) {
         newNameLi.textContent = newName;
-    } else {
+    } else if (newName.textContent === "") {
         newNameLi.textContent = "mysteryperson";
     }
     newScoreLi.textContent = scoreEl;
     nameScoreList.appendChild(newNameLi);
     scoreList.appendChild(newScoreLi);
     //save to local storage
-    localStorage.setItem("highscores", highscoreList.innerHTML);
+    localStorage.setItem("highscores-name", newNameLi.innerHTML);
+    localStorage.setItem("highscores-score", newScoreLi.innerHTML);
     
     //function load high scores
     loadScores();
+    // }
 };
 
 submitBtn.addEventListener("click", submitScore);
 
 function loadScores(event) {
-    var highscores = localStorage.getItem("highscores");
+    var highscoresSaveNames = localStorage.getItem("highscores-name");
+    var highscoresSaveScores = localStorage.getItem("highscores-score");
 
-    if (highscores) {
-        highscoreList.innerHTML = highscores;
+    if (highscoresSaveNames && highscoresSaveScores) {
+        nameScoreList.innerHTML = ("highscores-name");
+        scoreList.innerHTML = ("highscores-score");
     }
 };
 

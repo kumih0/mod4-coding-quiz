@@ -87,3 +87,9 @@ ul{
     flex-direction: column;
     justify-items: left;
 }
+
+.highscore-page .card-header{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 3px solid plum;
+}

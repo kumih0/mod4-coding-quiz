@@ -112,5 +112,12 @@ JS
 ## Live Link
 https://kumih0.github.io/mod4-coding-quiz/
 
-# Screenshot
+# Screenshots 
 
+<img width="1350" alt="Screen Shot 2023-05-24 at 4 59 01 PM" src="https://github.com/kumih0/mod4-coding-quiz/assets/132851569/cb497a76-485e-4f92-bd22-87f4adbb0864">
+<img width="1350" alt="Screen Shot 2023-05-24 at 4 59 08 PM" src="https://github.com/kumih0/mod4-coding-quiz/assets/132851569/0b89e33f-7bde-4556-a839-4daf8d897c52">
+
+<img width="1350" alt="Screen Shot 2023-05-24 at 4 58 38 PM" src="https://github.com/kumih0/mod4-coding-quiz/assets/132851569/e90a961c-0bc6-4230-b4d5-7814b0e80c4c">
+<img width="1350" alt="Screen Shot 2023-05-24 at 4 58 47 PM" src="https://github.com/kumih0/mod4-coding-quiz/assets/132851569/d235b48e-ad6a-4472-91ad-3adb8ca9b286">
+
+thanks it's been real y'all 

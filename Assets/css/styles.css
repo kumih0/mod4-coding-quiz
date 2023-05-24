@@ -75,3 +75,15 @@ ul{
     flex-direction: column;
     align-items: start;
 }
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-items: right;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-items: left;
+}

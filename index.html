@@ -57,12 +57,16 @@
     <div class="highscore-page hidden"> 
         <div class="card-wrapper">
             <div class="card-header">
-                <h2 class="left">Name: </h2>
+                <h2 class="left" >Name: </h2>
                 <h2 class="right">Score: </h2>
             </div>
-            <div class="card-body">
-                <ul class="highscore-list">
-                </ul>
+            <div class="card-body highscore-list">
+                <div class="left">
+                    <ul id="name-score-list"></ul>
+                </div>
+                <div class="right">
+                    <ul id="scores-list"></ul>
+                </div>
             </div>
             <button id="back-btn">Go Back</button>
             <button type="reset" id="clear-btn">Clear All</button>

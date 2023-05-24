@@ -15,6 +15,11 @@ var viewHS = document.getElementById("view-hs");
 var highscorePage = document.querySelector(".highscore-page");
 var highscoreList = document.querySelector(".highscore-list");
 var backBtn = document.getElementById("back-btn");
+var nameInput = document.getElementById("name-input");
+var newName;
+var nameScoreList = document.getElementById("name-score-list");
+var scoreList = document.getElementById("scores-list");
+
 
 //Question/answer global variables
 var question = document.getElementById("question");
@@ -205,7 +210,12 @@ function showFinalScore(){
 //     event.target.class.toggle("hidden");
 // }
 
-
+function submitScore(event) {
+    event.preventDefault();
+    newName = nameInput.textContent;
+    //new elements to load on highscore page
+    var newNameEl = document.createElement("p");
+}
     
 backBtn.addEventListener("click", function goBack(){
     mainPg.setAttribute("class", "display");

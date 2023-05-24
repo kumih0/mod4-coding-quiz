@@ -19,6 +19,7 @@ var nameInput = document.getElementById("name-input");
 var newName;
 var nameScoreList = document.getElementById("name-score-list");
 var scoreList = document.getElementById("scores-list");
+var submitBtn = document.getElementById("btn-submit")
 
 
 //Question/answer global variables
@@ -230,8 +231,19 @@ function submitScore(event) {
     localStorage.setItem("highscores", highscoreList.innerHTML);
     
     //function load high scores
+    loadScores();
+};
+
+submitBtn.addEventListener("click", submitScore);
+
+function loadScores(event) {
+    var highscores = localStorage.getItem("highscores");
+
+    if (highscores) {
+        highscoreList.innerHTML = highscores;
+    }
 }
-    
+
 backBtn.addEventListener("click", function goBack(){
     mainPg.setAttribute("class", "display");
     highscorePage.setAttribute("class", "hidden");

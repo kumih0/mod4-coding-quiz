@@ -7,19 +7,19 @@ var timeInterval; //declaring var timeint so can call to other funct
 
 //variables relating to page contents for changing what's displayed
 var h1El = document.getElementById("main-heading");
-var details = document.querySelector(".details");
-var cardHeader = document.querySelector(".card-header");
+var details = document.getElementById("details");
+var cardHeader = document.getElementById("card-header");
 var mainPg = document.getElementById("main");
 
 //result as in displays if selection was correct or incorrect answer
-var resultEl = document.querySelector(".display-result"); 
+var resultEl = document.getElementById("display-result"); 
 var result = document.getElementById("result");
 var scoreEl = document.getElementById("score");
-var finalScoreEl = document.querySelector(".final-score");
+var finalScoreEl = document.getElementById("final-score");
 
 //var relating to highscores, high score page, score form
 var viewHS = document.getElementById("view-hs");
-var highscorePage = document.querySelector(".highscore-page");
+var highscorePage = document.getElementById("highscore-page");
 var highscoreList = document.querySelector(".highscore-list");
 var backBtn = document.getElementById("back-btn");
 var clearHS = document.getElementById("clear-btn");
@@ -83,7 +83,7 @@ function countdown(){
             // As long as the `timeLeft` is greater than 1
         if (timeLeft > 1) {
                 // Set the `textContent` of `timer` to show the remaining seconds
-            timer.textContent = timeLeft;
+            timer.textContent = timeLeft + " seconds remaining";
                 // Decrement `timeLeft` by 1
             timeLeft--;
         } else if (timeLeft === 1) {
@@ -99,32 +99,34 @@ function countdown(){
     }, 1000);
 };
 
-function hideHeader() {
+function hideStartPg() {
     h1El.setAttribute("class", "hidden");
-    return;
-};
-
-function showQuestion() {
-    cardHeader.setAttribute("class", "display");
-    return;
-};
-
-function showAnsList() {
-    answerList.setAttribute("class", "display");
-    return;
-};
-
-function hideDetails(){
     details.setAttribute("class", "hidden");
     return;
 };
 
+function showQuiz() {
+    cardHeader.setAttribute("class", "display");
+    answerList.setAttribute("class", "display");
+    return;
+};
+
+// function showAnsList() {
+
+//     return;
+// };
+
+// function hideDetails(){
+
+//     return;
+// };
+
 startBtn.addEventListener("click", function startQuiz(event) {
     event.preventDefault();
-    hideHeader();
-    hideDetails();
-    showQuestion();
-    showAnsList();
+    hideStartPg();
+    // hideDetails();
+    showQuiz();
+    // showAnsList();
     countdown();
     
     startBtn.setAttribute("class", "hidden");
@@ -133,12 +135,14 @@ startBtn.addEventListener("click", function startQuiz(event) {
 });
 
 
+//if user clicks on view high score, ref load score funct
+viewHS.addEventListener("click", loadScores);
 
-viewHS.addEventListener("click", function displayHighscores(){
+function displayHighscores(){
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "hidden");
     highscorePage.setAttribute("class", "display");
-});
+};
 
 function setQuestion(){
     var currentQ = questionArray[qIndex].q;
@@ -175,9 +179,8 @@ function checkAns(event){
     
 function nextQuestion(){
     qIndex++;
-    if (qIndex<questionArray.length) {
+    if (qIndex < questionArray.length) {
         var ansBtns = answerList.getElementsByClassName("answer");
-        console.log(ansBtns);
         // removes unnecessary buttons from persisting
         if (ansBtns.length > 0) {
             while (ansBtns[0]) {
@@ -196,19 +199,19 @@ function endQuiz(){
 //if timer drops below 0 then it will default to 0
     if (timeLeft > 0) {
         scoreEl.textContent = timeLeft;
-        clearInterval(timeInterval);
     }
      if (timeLeft < 0) {
          timeLeft = 0;
          scoreEl.textContent = timeLeft;
-         clearInterval(timeInterval);
-    }
+    }    
+    clearInterval(timeInterval);
     showFinalScore();
 };
     
 function showFinalScore(){
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "display");
+    return;
 };
 // function hide(event){
 //     if (condition) {
@@ -219,9 +222,7 @@ function showFinalScore(){
 
 function submitScore(event) {
     event.preventDefault();
-    // if (event.target.innerHTML.matches("submit")) {
-
-    newName = nameInput.textContent; //capture user input
+    newName = nameInput.value; //capture user input
     //new elements to load on highscore page
     var newNameLi = document.createElement("li");
     var newScoreLi = document.createElement("li");
@@ -229,16 +230,19 @@ function submitScore(event) {
     //add input to new li element
     if (newName) {
         newNameLi.textContent = newName;
-    } else if (newName.textContent === "") {
+    } else if (newName) {
         newNameLi.textContent = "mysteryperson";
     }
-    newScoreLi.textContent = scoreEl;
+    newScoreLi.textContent = scoreEl.textContent;
+    console.log(scoreEl);
     nameScoreList.appendChild(newNameLi);
     scoreList.appendChild(newScoreLi);
+    console.log(newNameLi, newScoreLi);
+
     //save to local storage
-    localStorage.setItem("highscores-name", newNameLi.innerHTML);
-    localStorage.setItem("highscores-score", newScoreLi.innerHTML);
-    
+    localStorage.setItem("highscores-name", newNameLi.innerText);
+    localStorage.setItem("highscores-score", newScoreLi.innerText);
+
     //function load high scores
     loadScores();
     // }
@@ -249,26 +253,37 @@ submitBtn.addEventListener("click", submitScore);
 function loadScores(event) {
     var highscoresSaveNames = localStorage.getItem("highscores-name");
     var highscoresSaveScores = localStorage.getItem("highscores-score");
-
+    console.log(highscoresSaveNames, highscoresSaveScores);
     if (highscoresSaveNames && highscoresSaveScores) {
-        nameScoreList.innerHTML = ("highscores-name");
-        scoreList.innerHTML = ("highscores-score");
+        nameScoreList.innerText = highscoresSaveNames;
+        scoreList.innerText = highscoresSaveScores;
     }
+    displayHighscores();
 };
 
 backBtn.addEventListener("click", function goBack(){
     mainPg.setAttribute("class", "display");
     highscorePage.setAttribute("class", "hidden");
-//returns user to last page they were on if click on view high score during game, if on first page, return to first page
-    if (cardHeader.className === "display" && answerList.className === "display") {
+//returns user to last page they were on if click on view high score during game, if on first page or viewing high score pg, return to first page
+    if (qIndex < questionArray.length && cardHeader.className === "display" && answerList.className === "display") {
         return;
-    } else {
-        if (h1El.className === "hidden" && details.className  === "hidden") {
-      h1El.setAttribute("class", "display");
-      details.setAttribute("class", "display");  
+    } else if (h1El.className === "hidden" && details.className  === "hidden") {
+        showStartPg();
+        hideQuiz();
+      return;  
         }
-    }
-});
+    });
+function showStartPg() {
+          h1El.setAttribute("class", "display");
+      details.setAttribute("class", "display");
+}
+
+function hideQuiz() {
+    cardHeader.setAttribute("class", "hidden");
+    answerList.setAttribute("class", "hidden");
+    resultEl.setAttribute("class", "hidden");
+    return;
+};
 
 clearHS.addEventListener("click", function clearScores() {
     localStorage.removeItem("highscores");

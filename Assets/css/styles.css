@@ -67,7 +67,8 @@ button{
 
 .card-body{
     background-color: powderblue;
-
+    display:flex;
+    justify-content: space-around;
 }
 
 ul{
@@ -88,7 +89,7 @@ ul{
     justify-items: left;
 }
 
-.highscore-page .card-header{
+.card-header{
     display: flex;
     justify-content: space-around;
     border-bottom: 3px solid plum;

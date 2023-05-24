@@ -22,14 +22,14 @@
         <h1 class="display" id="main-heading">Javascript Coding Quiz</h1>
         
         <div class="card-wrapper">
-            <div class="card-header hidden">
+            <div class="hidden" id="card-header">
                 <h2 id="question">
                     This is where the question will go.
                 </h2>
             </div>
 
-            <div class="card-body">
-                <p class="details display">These are instructions to get started on the quiz. You will have 75 seconds to complete the quiz.  If you select an incorrect answer, there is a penalty of 15 seconds so choose wisely! Click on the Start button to get started. </p>
+            <div class="card">
+                <p class="display" id="details">These are instructions to get started on the quiz. You will have 75 seconds to complete the quiz.  If you select an incorrect answer, there is a penalty of 15 seconds so choose wisely! Click on the Start button to get started. </p>
                 <ul class="hidden" id="answer-list">
                     <li class="answers" ></li>
                     <li class="answers" ></li>
@@ -40,12 +40,12 @@
 
             <div class="start display"><button id="start-btn">Start</button></div>
         </div>
-        <div class="display-result hidden">
+        <div class="hidden" id="display-result">
             <h6 id="result"></h6>
         </div>
     </main>
 
-    <div class="final-score hidden">
+    <div class="hidden" id="final-score">
         <h2>Your final score: <span id="score"></span></h2>
         <form id="score-form" method="post">
             <label for="name-input">Enter Your Name:  </label>
@@ -54,7 +54,7 @@
         </form>
     </div>
 
-    <div class="highscore-page hidden"> 
+    <div class="hidden" id="highscore-page"> 
         <div class="card-wrapper">
             <div class="card-header">
                 <h2 class="left" >Name: </h2>

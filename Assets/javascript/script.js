@@ -245,7 +245,6 @@ function submitScore(event) {
 
     //function load high scores
     loadScores();
-    // }
 };
 
 submitBtn.addEventListener("click", submitScore);
@@ -258,6 +257,7 @@ function loadScores(event) {
         nameScoreList.innerText = highscoresSaveNames;
         scoreList.innerText = highscoresSaveScores;
     }
+    hideHeader();
     displayHighscores();
 };
 
@@ -273,15 +273,26 @@ backBtn.addEventListener("click", function goBack(){
       return;  
         }
     });
+
 function showStartPg() {
-          h1El.setAttribute("class", "display");
-      details.setAttribute("class", "display");
-}
+    h1El.setAttribute("class", "display");
+    details.setAttribute("class", "display");
+    
+    var startEl = document.getElementById("start");
+    startEl.setAttribute("class", "display");
+    return;
+};
 
 function hideQuiz() {
     cardHeader.setAttribute("class", "hidden");
     answerList.setAttribute("class", "hidden");
     resultEl.setAttribute("class", "hidden");
+    return;
+};
+
+function hideHeader() {
+    var header = document.getElementById("header");
+    header.setAttribute("class", "hidden");
     return;
 };
 

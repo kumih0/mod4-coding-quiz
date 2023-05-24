@@ -15,6 +15,7 @@ var highscoreList = document.querySelector(".highscore-list");
 
 var question = document.getElementById("question");
 var answerList = document.getElementById("answer-list");
+var answers = document.getElementsByClassName(".answers");
 
 var questionArray = [
     {q:"What is NOT a primitive value in JavaScript?",
@@ -139,10 +140,12 @@ function setQuestion(){
             console.log(currentAnswers[index]);
             let btn = document.createElement("button");
             btn.innerText = currentAnswers[index];
-            answerList.appendChild(btn);
+            answerList.children[index].appendChild(btn);
             btn.setAttribute("class", "answer");
             console.log(btn);
         }
+        console.log(answerList);
+    
 
     //     var userSelect;
     //     console.log(answerList.children);
@@ -152,26 +155,31 @@ function setQuestion(){
     //     console.log(event);
     //     console.log(userSelect);
 };
-    var currentAnswers = answerList.getElementsByTagName("button");
-    var userSelect;
-    currentAnswers.addEventListener("click", function select(event) {
-        event.target.innerText = userSelect;
-        return checkAns();
-    })
+    
 
 
-function checkAns(){
-    var correctAnswer = questionArray[qIndex].correctAns;
-    var result = document.getElementById("result");
-    resultEl.setAttribute("class", "display");
+var result = document.getElementById("result");
+function checkAns(event){
+    if (event.target.matches("button")) {
+        var userSelect = event.target.innerText;
+        
+        resultEl.setAttribute("class", "display");
+        if (userSelect === questionArray[qIndex].correctAns) {
+            result.textContent = "Correct!";
+        } else         
+        result.textContent = "Incorrect!";
+        timeLeft = timeLeft-15;
+        }
+        //function call next
+}
 
-    if (userSelect == correctAnswer) {
-        result.textContent = "Correct!";
-    } else         
-    result.textContent = "Incorrect!";
-    timeLeft = timeLeft-15;
-
-
+function nextQuestion(){
+    if (qIndex<questionArray.length) {
+        qIndex++;
+        setQuestion();
+    } else {
+        endQuiz():
+    }
 }
 
 // function hide(event){

@@ -3,6 +3,9 @@ var timer = document.getElementById("time");
 var startBtn = document.getElementById("start-btn");
 var qIndex; //the counter for question index 
 var timeLeft = 75;
+var h1El = document.getElementById("main-heading");
+var details = document.querySelector(".details");
+var cardHeader = document.querySelector(".card-header");
 
 var resultEl = document.querySelector(".display-result"); 
 //result as in displays if selection was correct or incorrect answer
@@ -94,13 +97,11 @@ function countdown(){
 };
 
 function hideHeader() {
-    var h1El = document.getElementById("main-heading");
     h1El.setAttribute("class", "hidden");
     return;
 };
 
 function showQuestion() {
-    var cardHeader = document.querySelector(".card-header");
     cardHeader.setAttribute("class", "display");
     return;
 };
@@ -111,7 +112,6 @@ function showAnsList() {
 };
 
 function hideDetails(){
-    var details = document.querySelector(".details");
     details.setAttribute("class", "hidden");
     return;
 };
@@ -198,12 +198,12 @@ function endQuiz(){
         scoreEl.textContent = timeLeft;
     }
     showFinalScore();
-}
+};
     
 function showFinalScore(){
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "display");
-}
+};
 // function hide(event){
 //     if (condition) {
         
@@ -215,8 +215,8 @@ function submitScore(event) {
     event.preventDefault();
     newName = nameInput.textContent;
     //new elements to load on highscore page
-    var newNameLi = document.createElement("li");
-    var newScoreLi = document.createElement("li");
+    var newNameLi = nameScoreList.createElement("li");
+    var newScoreLi = scoreList.createElement("li");
 
     //entered name input
     if (newName) {
@@ -242,11 +242,20 @@ function loadScores(event) {
     if (highscores) {
         highscoreList.innerHTML = highscores;
     }
-}
+};
 
 backBtn.addEventListener("click", function goBack(){
     mainPg.setAttribute("class", "display");
     highscorePage.setAttribute("class", "hidden");
+//returns user to last page they were on if click on view high score during game, if on first page, return to first page
+    if (cardHeader.className === "display" && answerList.className === "display") {
+        return;
+    } else {
+        if (h1El.className === "hidden" && details.className  === "hidden") {
+      h1El.setAttribute("class", "display");
+      details.setAttribute("class", "display");  
+        }
+    }
 });
 
 var clearHS = document.getElementById("clear-btn");

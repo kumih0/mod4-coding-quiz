@@ -259,6 +259,7 @@ backBtn.addEventListener("click", function goBack(){
 });
 
 var clearHS = document.getElementById("clear-btn");
-clearHS.addEventListener("click", function clearScores(event) {
-    
-})
+clearHS.addEventListener("click", function clearScores() {
+    localStorage.removeItem("highscores");
+    highscoreList.innerHTML = "";
+});

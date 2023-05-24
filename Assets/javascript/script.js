@@ -75,12 +75,11 @@ function countdown(){
             timer.textContent = timeLeft + ' second remaining';
             timeLeft--;
         } else {
-                // Once `timeLeft` gets to 0, set `timer` to an empty string
-            timer.textContent = '';
+            timer.textContent = "0";
                 // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
                 // Call the function to display final score
-                
+            endQuiz();
         }
     }, 1000);
 };
@@ -144,9 +143,6 @@ function setQuestion(){
             btn.setAttribute("class", "answer");
             console.log(btn);
         }
-        console.log(answerList);
-    
-
     //     var userSelect;
     //     console.log(answerList.children);
     // answerList.children.addEventListener("click", function select(event) {
@@ -170,7 +166,7 @@ function checkAns(event){
         result.textContent = "Incorrect!";
         timeLeft = timeLeft-15;
         }
-        //function call next
+        nextQuestion();
 }
 
 function nextQuestion(){
@@ -178,10 +174,23 @@ function nextQuestion(){
         qIndex++;
         setQuestion();
     } else {
-        endQuiz():
+        endQuiz();
     }
 }
 
+function endQuiz(){
+    clearInterval(timeInterval);
+    if (timeLeft < 0) {
+        timeLeft = 0;
+    }
+    showFinalScore();
+}
+
+function showFinalScore(){
+    mainPg.setAttribute("class", "hidden");
+    finalScoreEl.setAttribute("class", "display");
+    scoreEl.textContent = timeLeft;
+}
 // function hide(event){
 //     if (condition) {
         

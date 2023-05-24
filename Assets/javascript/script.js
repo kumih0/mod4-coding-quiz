@@ -56,51 +56,53 @@ var questionArray = [
 ];
 
     
-    function countdown(){
-        var timeLeft = 75;
+function countdown(){
+    var timeLeft = 75;
         
-        var timeInterval = setInterval(function () {
+    var timeInterval = setInterval(function () {
             // As long as the `timeLeft` is greater than 1
-            if (timeLeft > 1) {
+        if (timeLeft > 1) {
                 // Set the `textContent` of `timer` to show the remaining seconds
-                timer.textContent = timeLeft + ' seconds remaining';
+            timer.textContent = timeLeft + ' seconds remaining';
                 // Decrement `timeLeft` by 1
-                timeLeft--;
-            } else if (timeLeft === 1) {
-                // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-                timer.textContent = timeLeft + ' second remaining';
-                timeLeft--;
-            } else {
+            timeLeft--;
+        } else if (timeLeft === 1) {
+            // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+            timer.textContent = timeLeft + ' second remaining';
+            timeLeft--;
+        } else {
                 // Once `timeLeft` gets to 0, set `timer` to an empty string
-                timer.textContent = '';
+            timer.textContent = '';
                 // Use `clearInterval()` to stop the timer
-                clearInterval(timeInterval);
+            clearInterval(timeInterval);
                 // Call the function to display final score
                 
-            }
-        }, 1000);
-    };
+        }
+    }, 1000);
+};
     
     function hideHeader() {
         var h1El = document.getElementById("main-heading");
         h1El.setAttribute("class", "hidden");
+        return;
     };
     
     function showQuestion() {
         var cardHeader = document.querySelector(".card-header");
         cardHeader.setAttribute("class", "display");
-
+        return;
     };
     
     function showAnsList() {
-        
         answerList.setAttribute("class", "display");
+        return;
     };
     
     function hideDetails(){
-    var details = document.querySelector(".details");
-    details.setAttribute("class", "hidden");
-};
+        var details = document.querySelector(".details");
+        details.setAttribute("class", "hidden");
+        return;
+    };
 
 startBtn.addEventListener("click", function startQuiz(event) {
     event.preventDefault();
@@ -113,12 +115,11 @@ startBtn.addEventListener("click", function startQuiz(event) {
     startBtn.setAttribute("class", "hidden");
     qIndex = 0;
     setQuestion();
-    
 });
 
 
 viewHS.addEventListener("click", function displayHighscores(){
-    var mainPg = document.querySelector(".main");
+    var mainPg = document.getElementById("main");
     mainPg.setAttribute("class", "hidden");
     finalScoreEl.setAttribute("class", "hidden");
     highscorePage.setAttribute("class", "display");
@@ -139,3 +140,15 @@ function setQuestion(){
         }
 
 };
+
+function goBack() {
+    var backBtn = document.getElementById("back-btn");
+    
+    backBtn.addEventListener("click", function goBack(){
+        if () {
+            
+        } else {
+            
+        }
+    })
+}

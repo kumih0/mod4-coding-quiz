@@ -18,6 +18,7 @@ var viewHS = document.getElementById("view-hs");
 var highscorePage = document.querySelector(".highscore-page");
 var highscoreList = document.querySelector(".highscore-list");
 var backBtn = document.getElementById("back-btn");
+var clearHS = document.getElementById("clear-btn");
 var nameInput = document.getElementById("name-input");
 var newName;
 var nameScoreList = document.getElementById("name-score-list");
@@ -258,7 +259,6 @@ backBtn.addEventListener("click", function goBack(){
     }
 });
 
-var clearHS = document.getElementById("clear-btn");
 clearHS.addEventListener("click", function clearScores() {
     localStorage.removeItem("highscores");
     highscoreList.innerHTML = "";
